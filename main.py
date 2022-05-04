@@ -1,33 +1,33 @@
-from ESI4Py import esiobject_base_noauth as AUTHLESSESI
-from templatemanager import template_manager as TM
-from whitelistmanager import WhiteListManager as WLM
+from SCRIPTLIBRARIES.ESI4Py import esiobject_base_noauth as AUTHLESSESI
+from SCRIPTLIBRARIES.templatemanager import template_manager as TM
+from EVEWORK_ANALYSIS.EVEWORK_ANALYSIS import EVEWORK_ANALYSIS as EA
+from EVEWORK_ANALYSIS.whitelistmanager import WhiteListManager as WLM
+
 
 import threading
+import cherrypy
+
 def whitelistholderfunc():
     Whitelist = WLM()
     Whitelist.start()
 
 
-import cherrypy
-import os, os.path
-import SDE4Py
-import time
+import os.path
 from datetime import datetime
-import datetime as dt
 import json
 
 def DEBUG_print(toDEBUG_print):
     if DEBUG:
         print(toDEBUG_print)
 
-def search_list(list,tosearchfor):
-    found = False
-    i = 0
-    while found == False and i < len(list):
-        if list[i] == tosearchfor:
-            found = True
-        i += 1
-    return found
+#def search_list(list,tosearchfor):
+#    found = False
+#    i = 0
+#    while found == False and i < len(list):
+#        if list[i] == tosearchfor:
+#            found = True
+#        i += 1
+#    return found
 
 class Mainsite(object):
     @cherrypy.expose
@@ -41,14 +41,15 @@ class Mainsite(object):
     @cherrypy.expose
     def dscan(self):
         dscanPage = TM()
-        dscanPage.load_html_template("TEMPLATES/dscan-template.html")
+        dscanPage.load_html_template("EVEWORK_ANALYSIS/TEMPLATES/dscan-template.html")
         #dscanPage.format_html(["yes","why"])
         return dscanPage.get_parsed_html()
     
     @cherrypy.expose
     def dscanAnalyse(self,SCANCODE="",DSCAN="",LOCAL="",useDSCAN="",useLOCAL=""):
-
-        # Prepare Template Class
+        EAvar= EA(DEBUG,URI,SCANCODE,DSCAN,LOCAL,useDSCAN,useLOCAL)
+        return EAvar.DSCANAnalyse()
+        """""""""# Prepare Template Class
         dscanAnalysePage = TM()
 
         # Format Variables to avoid throwing errors for being null
@@ -160,7 +161,7 @@ class Mainsite(object):
             filtered_ship_dictionary = {}
             if useDSCAN:
                 # Load up the ship id whitelist
-                f = open("whitelist.json","r")
+                f = open("EVEWORK-ANALYSIS/whitelist.json", "r")
                 whitelistIDs = json.loads(f.read())["IDs"]
                 f.close()
                 DEBUG_print(whitelistIDs)
@@ -196,11 +197,11 @@ class Mainsite(object):
             finaldict = {"TIME":datetime.now().strftime("%d/%m/%Y @ %H:%M:%S"),"SCANDATA":filtered_ship_dictionary,"LOCALDATA":LOCAL_FULLY_LINKED_DATA}
             finaldict = json.dumps(finaldict)
 
-            f = open("dscans/count.dat","r")
+            f = open("EVEWORK-ANALYSIS/dscans/count.dat", "r")
             currentcount = int(f.read())
             f.close()
 
-            f = open("dscans/count.dat","w")
+            f = open("EVEWORK-ANALYSIS/dscans/count.dat", "w")
             f.write(str(currentcount+1))
             f.close()
 
@@ -249,7 +250,7 @@ class Mainsite(object):
         #        resultstable += ("</tr>")
         #dscanAnalysePage.format_html([resultstable])
         DEBUG_print(filtered_ship_dictionary)
-        #return dscanAnalysePage.get_parsed_html()
+        #return dscanAnalysePage.get_parsed_html()"""""
 
 
 
