@@ -23,14 +23,17 @@ def DEBUG_print(toDEBUG_print):
 class Mainsite(object):
     @cherrypy.expose
     def default(self, attr='abc'):
+        DEBUG_print("EXECUTING DEFFAULT PAGE")
         return "<meta http-equiv=\"Refresh\" content=\"0; url=\'http://"+URI+"\'\" />"
     @cherrypy.expose
     def index(self):
+        DEBUG_print("EXECUTING INDEX PAGE")
         indexPage = TM()
         indexPage.load_html_template("TEMPLATES/index.html")
         return indexPage.get_parsed_html()
     @cherrypy.expose
     def dscan(self):
+        DEBUG_print("EXECUTING SCAN PAGE")
         dscanPage = TM()
         dscanPage.load_html_template("EVEWORK_ANALYSIS/TEMPLATES/dscan-template.html")
         #dscanPage.format_html(["yes","why"])
@@ -38,6 +41,7 @@ class Mainsite(object):
     
     @cherrypy.expose
     def dscanAnalyse(self,SCANCODE="",DSCAN="",LOCAL="",useDSCAN="",useLOCAL=""):
+        DEBUG_print("EXECUTING ANALYSIS PAGE")
         EAvar= EA(DEBUG,URI,SCANCODE,DSCAN,LOCAL,useDSCAN,useLOCAL)
         return EAvar.DSCANAnalyse()
 

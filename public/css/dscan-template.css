@@ -95,7 +95,8 @@ textarea { resize: none; }
     height: 5%;
 }
 .btndiv {
-    margin-top: 1.5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
     padding-left:5%;
     float:left;
 }
