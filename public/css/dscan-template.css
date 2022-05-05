@@ -94,3 +94,24 @@ textarea { resize: none; }
     width: 5%;
     height: 5%;
 }
+.btndiv {
+    margin-top: 1.5%;
+    padding-left:5%;
+    float:left;
+}
+.btn {
+  -webkit-border-radius: 9;
+  -moz-border-radius: 9;
+  border-radius: 9px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  background: #3498db;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #b1d4e0;
+  text-decoration: none;
+}

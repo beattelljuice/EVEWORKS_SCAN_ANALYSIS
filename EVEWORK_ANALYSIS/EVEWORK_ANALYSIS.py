@@ -53,9 +53,6 @@ class EVEWORK_ANALYSIS:
          self.DEBUG_print(self.useDSCAN)
          # Determine if user is creating a new scan or reading an existing scan
          if self.SCANCODE == "":
-
-
-
              # If scan type is selected and no scan data was provided 
              if self.DSCAN==" " and self.useDSCAN:
                  return "<meta http-equiv=\"Refresh\" content=\"0; url=\'http://"+self.URI+"/self.DSCAN\'\" />" 
@@ -196,9 +193,16 @@ class EVEWORK_ANALYSIS:
              return self.DSCANAnalysePage.get_parsed_html()
          else:
              self.DSCAN_table =""
-             f=open("EVEWORK_ANALYSIS/dscans/"+self.SCANCODE+".scan")
-             scan_dictionary = json.loads(f.read())
-             f.close()
+             print("here")
+             try:
+                f=open("EVEWORK_ANALYSIS/dscans/"+self.SCANCODE+".scan")
+                scan_dictionary = json.loads(f.read())
+                f.close()
+             except FileNotFoundError:
+                 print("dealing with error")
+                 self.DSCANAnalysePage.load_html_template("EVEWORK_ANALYSIS/TEMPLATES/DSCAN-analysis-function-template.html")
+                 self.DSCANAnalysePage.format_html(["http://"+self.URI])
+                 return self.DSCANAnalysePage.get_parsed_html()
              #self.DEBUG_print(filtered_ship_dictionary)
              for i in scan_dictionary["SCANDATA"]:
                  #self.DEBUG_print(filtered_ship_dictionary["SCANDATA"][i]["QUANTITY"])

@@ -1,5 +1,5 @@
 {
   "URI": "Localhost",
   "DEBUG": false,
-  "USE ID WHITELIST UPDATER": true
+  "USE ID WHITELIST UPDATER": false
 }
