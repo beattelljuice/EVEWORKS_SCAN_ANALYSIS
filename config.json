@@ -1,6 +1,6 @@
 {
-  "URI": "evework.xyz",
+  "URI": "127.0.0.1",
   "DEBUG": false,
   "USE ID WHITELIST UPDATER": false,
-  "PORT": 12000
+  "PORT": 80
 }
