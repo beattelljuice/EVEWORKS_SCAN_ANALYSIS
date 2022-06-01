@@ -79,8 +79,10 @@ if __name__ == '__main__':
             'tools.staticdir.dir': './external_resources'
         }
     }
+    if DEBUG == False:
+            cherrypy.config.update({'error_page.500': error_page_500})
+
     cherrypy.config.update({'error_page.404': error_page_404})
-    cherrypy.config.update({'error_page.500': error_page_500})
     cherrypy.config.update({'server.socket_port': PORT})
     cherrypy.config.update({'server.socket_host': "0.0.0.0"})
     cherrypy.quickstart(Mainsite(),'/',conf)

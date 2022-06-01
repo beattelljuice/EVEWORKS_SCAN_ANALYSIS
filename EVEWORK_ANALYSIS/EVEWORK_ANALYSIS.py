@@ -55,9 +55,9 @@ class EVEWORK_ANALYSIS:
          if self.SCANCODE == "":
              # If scan type is selected and no scan data was provided 
              if self.DSCAN==" " and self.useDSCAN:
-                 return "<meta http-equiv=\"Refresh\" content=\"0; url=\'http://"+self.URI+"/self.DSCAN\'\" />" 
+                 return "<meta http-equiv=\"Refresh\" content=\"0; url=\'http://"+self.URI+"/dscan\'\" />" 
              if self.LOCAL==" " and self.useLOCAL:
-                 return "<meta http-equiv=\"Refresh\" content=\"0; url=\'http://"+self.URI+"/self.DSCAN\'\" />"
+                 return "<meta http-equiv=\"Refresh\" content=\"0; url=\'http://"+self.URI+"/dscan\'\" />"
              # ----------- self.LOCAL SCAN DATA RELATED LOGIC -------------
              if self.useLOCAL:
                  # Do some formatting
