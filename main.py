@@ -20,6 +20,12 @@ def DEBUG_print(toDEBUG_print):
     if DEBUG:
         print(toDEBUG_print)
 
+def error_page_404(status, message, traceback, version):
+        return "<meta http-equiv = \"refresh\" content = \"0; url = /dscan\" />"
+
+def error_page_500(status, message, traceback, version):
+        return "<meta http-equiv = \"refresh\" content = \"0; url = /dscan\" />"
+
 class Mainsite(object):
     @cherrypy.expose
     def default(self, attr='abc'):
@@ -68,11 +74,13 @@ if __name__ == '__main__':
             'tools.sessions.on': True,
             'tools.staticdir.root': os.path.abspath(os.getcwd())
         },
-        '/static': {
+        '/rsc': {
             'tools.staticdir.on': True,
-            'tools.staticdir.dir': './public'
+            'tools.staticdir.dir': './external_resources'
         }
     }
+    cherrypy.config.update({'error_page.404': error_page_404})
+    cherrypy.config.update({'error_page.500': error_page_500})
     cherrypy.config.update({'server.socket_port': PORT})
     cherrypy.config.update({'server.socket_host': "0.0.0.0"})
     cherrypy.quickstart(Mainsite(),'/',conf)
