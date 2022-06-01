@@ -57,6 +57,7 @@ if __name__ == '__main__':
     f.close()
     URI = config_data["URI"]
     DEBUG = config_data["DEBUG"]
+    PORT = int(config_data["PORT"])
     USE_ID_WHITELIST_UPDATER = config_data["USE ID WHITELIST UPDATER"]
     if (USE_ID_WHITELIST_UPDATER):
         WhitelistmanagerThread = threading.Thread(target=whitelistholderfunc)
@@ -72,6 +73,6 @@ if __name__ == '__main__':
             'tools.staticdir.dir': './public'
         }
     }
-    cherrypy.config.update({'server.socket_port': 80})
-    cherrypy.config.update({'server.socket_host': URI})
+    cherrypy.config.update({'server.socket_port': PORT})
+    cherrypy.config.update({'server.socket_host': "0.0.0.0"})
     cherrypy.quickstart(Mainsite(),'/',conf)

@@ -16,9 +16,10 @@
 <h3>Running the program</h3>
 <p>Run the program via python <code>python3 main.py</code></p>
 <h3>Config.json</h3>
-<p><code><b>URI</b></code> : The hostname/ip address the server should listen on</p>
+<p><code><b>URI</b></code> : The hostname/ip address the server should listen on, only actually affects the redirect link for saved scans</p>
 <p><code><b>DEBUG</b></code> : true/<b>false</b> : weither or not to print a bunch of extra debugging junk</p>
 <p><code><b>USE ID WHITELIST UPDATER</b></code> : <b>true</b>/false : weither or not to activate the automatic ID whitelist updater - Used for ensuring Ship Group ID dictionaries stay up to date to any ingame changes</p>
+<p><code><b>USE ID WHITELIST UPDATER</b></code> : Port (as an integer), the port the server is listening on
 
 <h3>Common Errors</h3>
 <h4>Error</h4>

@@ -1,5 +1,6 @@
 {
-  "URI": "Localhost",
-  "DEBUG": true,
-  "USE ID WHITELIST UPDATER": false
+  "URI": "evework.xyz",
+  "DEBUG": false,
+  "USE ID WHITELIST UPDATER": false,
+  "PORT": 12000
 }

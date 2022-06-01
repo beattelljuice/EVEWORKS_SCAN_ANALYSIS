@@ -188,7 +188,7 @@ class EVEWORK_ANALYSIS:
              f.write(finaldict)
              f.close()
 
-             self.DSCANAnalysePage.load_html_template("EVEWORK_ANALYSIS/TEMPLATES/DSCAN-analysis-function-template.html")
+             self.DSCANAnalysePage.load_html_template("EVEWORK_ANALYSIS/TEMPLATES/dscan-analysis-function-template.html")
              self.DSCANAnalysePage.format_html(["http://"+self.URI+"/dscanAnalyse?SCANCODE="+str(currentcount)])
              return self.DSCANAnalysePage.get_parsed_html()
          else:
@@ -200,7 +200,7 @@ class EVEWORK_ANALYSIS:
                 f.close()
              except FileNotFoundError:
                  print("dealing with error")
-                 self.DSCANAnalysePage.load_html_template("EVEWORK_ANALYSIS/TEMPLATES/DSCAN-analysis-function-template.html")
+                 self.DSCANAnalysePage.load_html_template("EVEWORK_ANALYSIS/TEMPLATES/dscan-analysis-function-template.html")
                  self.DSCANAnalysePage.format_html(["http://"+self.URI])
                  return self.DSCANAnalysePage.get_parsed_html()
              #self.DEBUG_print(filtered_ship_dictionary)
@@ -210,7 +210,7 @@ class EVEWORK_ANALYSIS:
                  self.DSCAN_table += ("<td>"+i+"</td>")
                  self.DSCAN_table += ("<td>"+str(scan_dictionary["SCANDATA"][i]["QUANTITY"])+"</td>")
                  self.DSCAN_table += ("</tr>")
-             self.DSCANAnalysePage.load_html_template("EVEWORK_ANALYSIS/TEMPLATES/DSCAN-analysis-template.html")
+             self.DSCANAnalysePage.load_html_template("EVEWORK_ANALYSIS/TEMPLATES/dscan-analysis-template.html")
              time_taken =scan_dictionary["TIME"]
              self.LOCAL_table = ""
              for i in scan_dictionary["self.LOCALDATA"]:
